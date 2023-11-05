@@ -1,10 +1,12 @@
 package riscv;
 
-    typedef enum {ADDI, ANDI, ORI, XORI,
-                ADDU, SUBU, AAND, OOR, XXOR, NNOR, SSLL, SLLV, SSRA, SRAV,
-				SSRL, SRLV, LUI, LBU, LW, SB, SW, SLT,
-				SLTU, SLTI,	SLTIU, BEQ, BGEZ, BLEZ, BNE, J, JAL, JALR, JR, 
-				MULTU, DIVU, MFHI, MFLO, invalid_instruction, NOP} inst_type;
+    typedef enum {ADDI, ANDI, ORI, XORI, SLTI, SLTIU, AUIPC, LUI, SLLI, SRLI, SRAI,
+                    ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND, FENCE, FENCEI,
+                    CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI, ECALL, EBREAK,
+                    URET, SRET, MRET, WFI, SFENCEVMA, LB, LH, LW, LBU, LHU, SB, SH, SW,
+                    JAL, JALR, BEQ, BNE, BLT, BGE, BLTU, BGEU
+
+    } inst_type;
     typedef struct {
         logic CY1;       // command of the first stage
         logic CY2;      //    "    of the second stage
