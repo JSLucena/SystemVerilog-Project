@@ -26,5 +26,51 @@ package riscv;
 
     typedef enum  logic[2:0] {
                               OP0, OP1, OP2, OP3, OP4, OP5, OP6, OP7, NOTOKEN='Z
-                              } instruction_type;
+    } instruction_type;
+
+    typedef struct {
+        logic [31:0] IR;
+        logic [31:0] NPC;
+    } IF_ID;
+
+    typedef struct {
+        logic [31:0] RS1;
+        logic [31:0] RS2; //or IMM
+        logic [31:0] NPC;
+        logic [31:0] IR;
+        logic [5:0] writeAddr;
+        inst_type i;
+        logic branch;
+        logic mem_ce;
+        logic rw; //0 if store, 1 if read
+        logic bw; //byte write
+        logic wreg; //stores and branches disable the regbank for writing
+
+
+    } ID_EX;
+
+    typedef struct {
+        logic [31:0] RALU;
+        logic [31:0] RS2; //or IMM
+        logic [31:0] NPC;
+        logic [5:0] writeAddr;
+        inst_type i;
+        logic branch;
+        logic jump;
+        logic mem_ce;
+        logic rw; //0 if store, 1 if read
+        logic bw; //byte write
+        logic wreg; //stores and branches disable the regbank for writing
+
+    } EX_MEM;
+
+    typedef struct{
+        logic [31:0] RALU;
+        logic [31:0] NPC;
+        logic [31:0] readData;
+        logic [5:0] writeAddr;
+        logic wreg; //stores and branches disable the regbank for writing
+        inst_type i;
+    } MEM_WB;
+
 endpackage
